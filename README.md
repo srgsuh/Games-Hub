@@ -1,5 +1,6 @@
-#GamesHub is an educational app built with React, TypeScript, Chakra UI, and Vite. It fetches data about modern video games from an external API and organizes them into genres for easy exploration.
-##Features:
+# GamesHub
+This is an educational app built with React, TypeScript, Chakra UI, and Vite. It fetches data about modern video games from an external API and organizes them into genres for easy exploration.
+## Features:
 
 - Fetches and displays up-to-date video game data
 - Categorizes games by genre (Action, RPG, Adventure, etc.)
