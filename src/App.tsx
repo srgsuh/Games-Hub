@@ -6,7 +6,7 @@ function App() {
   return (
       <>
           <Grid templateAreas= {{md: '"nav nav" "side main"', base: '"nav" "main"'}}>
-              <GridItem bg={"blue.300"} area="nav">
+              <GridItem area="nav">
                   <Navigator></Navigator>
               </GridItem>
               <GridItem hideBelow={"md"} bg={"green.300"} area={"side"}>SIDE PAnel</GridItem>
