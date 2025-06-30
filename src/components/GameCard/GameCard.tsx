@@ -1,23 +1,20 @@
-import {Box, Image, Stack} from "@chakra-ui/react";
+import {Box, Image, Text} from "@chakra-ui/react";
 
 interface GameCardProps {
     name: string;
     background_image: string;
-    height: string;
-    width: string;
+    height?: string;
+    width?: string;
 }
 
-const GameCard = ({name, background_image, height, width}: GameCardProps) => {
+const GameCard = ({name, background_image, height}: GameCardProps) => {
     return (
         <Box>
-            <Stack direction="column" justify="center" alignItems="center">
-                <Image src={background_image}
-                       alt={name}
-                       height={height}
-                       width={width}
-                />
-                <span>{name}</span>
-            </Stack>
+            <Image src={background_image}
+                   alt={name}
+                   height={height}
+            />
+            <Text>{name}</Text>
         </Box>
     );
 };
