@@ -1,13 +1,14 @@
-import {SimpleGrid, Text} from "@chakra-ui/react";
+import {SimpleGrid, Spinner, Text} from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard.tsx";
 import useFetchGames from "../../hooks/useFetchGames.ts";
 
 const GameGrid = () => {
 
-    const {data: games, error} = useFetchGames();
+    const {data: games, error, isLoading} = useFetchGames();
 
     return (
         <>
+            {isLoading && <Spinner size={"xl"} /> }
             {!error && (
                 <>
                     <SimpleGrid columns={{base: 1, sm: 2, md: 3,}}
