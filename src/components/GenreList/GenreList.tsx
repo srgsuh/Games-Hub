@@ -1,26 +1,21 @@
-import {useState} from "react";
-import api from "../../services/api-client.ts";
-import {Box, VStack} from "@chakra-ui/react";
-import type {Genre, GenresFetchResponse} from "../../model/FetchGenreTypes.ts";
+import {Box, VStack, Text} from "@chakra-ui/react";
+import type {Genre} from "../../model/FetchGenreTypes.ts";
+import useFetchData from "../../hooks/useFetchData.ts";
 
 const GenreList = () => {
-    const [genres, setGenres] = useState<Genre[]>([]);
-    api.get<GenresFetchResponse>("/genres", {
-        params: {
-            page_size: 20,
-            ordering: "name"
-        }
-    })
-        .then(r => setGenres(r.data.results))
-        .catch(e => {
-            console.error(e);
-        });
-    ;
+    const {data: genres, error} = useFetchData<Genre>("/genres", {
+        ordering: "name"
+    });
 
     return (
-        <VStack>
-            {genres.map((g: Genre) => <Box key={g.id}>{g.name}</Box>)}
-        </VStack>
+        <>
+        {error? <Text>{error}</Text>: (
+                <VStack>
+                    {genres.map((g: Genre) => <Box key={g.id}>{g.name}</Box>)}
+                </VStack>
+            )
+        }
+        </>
     );
 };
 

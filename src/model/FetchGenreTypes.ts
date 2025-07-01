@@ -3,8 +3,3 @@ export interface Genre {
     name: string;
     image_background: string;
 }
-
-export interface GenresFetchResponse {
-    count: number;
-    results: Genre[];
-}
