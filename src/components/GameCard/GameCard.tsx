@@ -15,13 +15,18 @@ const GameCard = ({game}: GameCardProps) => {
         metacritic,
         platforms,
     } = game;
-    return (<Card.Root>
+    return (<Card.Root overflow={"hidden"} >
         <Card.Header>
             <Heading size={"lg"}>{name}</Heading>
         </Card.Header>
         <Divider />
         <Card.Body>
-            <Image src={background_image} alt={name} height="100%" borderRadius="md" />
+            <Image src={background_image}
+                   alt={name}
+                   height="100%"
+                   objectFit="cover"
+                   borderRadius="md"
+            />
         </Card.Body>
         <Divider />
         <Card.Footer flexDirection={"column"} alignItems={"flex-start"}>

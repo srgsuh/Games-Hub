@@ -1,15 +1,20 @@
 import {Badge} from "@chakra-ui/react";
-import {HiEmojiHappy, HiEmojiSad} from "react-icons/hi";
+import {CiFaceMeh, CiFaceSmile, CiFaceFrown} from "react-icons/ci";
+import type {ReactElement} from "react";
 
 interface ScoreBadgeProps {
-    score: string;
+    score: number;
+}
+
+function getBadgeParameters(score: number):{color:string, bg: string, emoji: ReactElement} {
+    return (score > 90)? {color: "white", bg: "green", emoji: <CiFaceSmile />}:
+        (score > 81)? {color: "black", bg: "gray.400", emoji: <CiFaceMeh />}:
+            {color: "black", bg: "red.300", emoji: <CiFaceFrown />}
 }
 
 const ScoreBadge = ({score}: ScoreBadgeProps) => {
-    const isCool = (+score) > 90;
-    const colorPalette = isCool? "green": "gray";
-    const symbol = isCool ? <HiEmojiHappy /> : <HiEmojiSad />;
-    return <Badge variant={"solid"} colorPalette={colorPalette}>{symbol}{score}</Badge>;
+    const {emoji, ...colorParams} = getBadgeParameters(score);
+    return (<Badge {...colorParams}>{emoji}{score}</Badge>);
 };
 
 export default ScoreBadge;
