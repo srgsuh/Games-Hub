@@ -1,7 +1,8 @@
-import {Box, Heading, Image, Text} from "@chakra-ui/react";
-import {Card, CardHeader, CardBody, CardFooter} from '@chakra-ui/card';
+import {Heading, HStack, Image, Text} from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react"
 import {Divider} from "@chakra-ui/layout";
 import type {Game} from "../../model/FetchTypes.ts";
+import ScoreBadge from "../ScoreBadge.tsx";
 
 interface GameCardProps {
     game: Game;
@@ -14,26 +15,25 @@ const GameCard = ({game}: GameCardProps) => {
         metacritic,
         platforms,
     } = game;
-    return (<Card>
-        <CardHeader>
+    return (<Card.Root>
+        <Card.Header>
             <Heading size={"lg"}>{name}</Heading>
-        </CardHeader>
+        </Card.Header>
         <Divider />
-        <CardBody>
+        <Card.Body>
             <Image src={background_image} alt={name} height="100%" borderRadius="md" />
-        </CardBody>
+        </Card.Body>
         <Divider />
-        <CardFooter flexDirection={"column"}>
-            <Box>
-                <Heading size={"md"}>Metacritic score: </Heading>
-                <Text>{metacritic}</Text>
-            </Box>
-            {!!platforms.length && <Box>
-                <Heading size={"md"}>Platforms: </Heading>
+        <Card.Footer flexDirection={"column"} alignItems={"flex-start"}>
+            <HStack justifyContent={"flex-start"}>
+                <Heading size={"md"}>Metacritic: </Heading>
+                <ScoreBadge score={metacritic}></ScoreBadge>
+            </HStack>
+            {!!platforms.length &&
                 <Text>{platforms.map(p=>p.platform.name).join(', ')}</Text>
-            </Box>}
-        </CardFooter>
-    </Card>);
+            }
+        </Card.Footer>
+    </Card.Root>);
 };
 
 export default GameCard;

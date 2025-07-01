@@ -15,7 +15,7 @@ const GameGrid = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        api.get<FetchGamesResponse>("/x2games", {params: {page_size: PAGE_SIZE}})
+        api.get<FetchGamesResponse>("/games", {params: {page_size: PAGE_SIZE}})
             .then((result) => {
                 setState("success");
                 setGames(result.data.results);
