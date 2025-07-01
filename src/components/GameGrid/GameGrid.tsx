@@ -1,11 +1,10 @@
-import type {Game} from "../../model/FetchGameTypes.ts";
 import {SimpleGrid, Text} from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard.tsx";
-import useFetchData from "../../hooks/useFetchData.ts";
+import useFetchGames from "../../hooks/useFetchGames.ts";
 
 const GameGrid = () => {
 
-    const {data: games, error} = useFetchData<Game>("/games", {page_size: "12"})
+    const {data: games, error} = useFetchGames();
 
     return (
         <>

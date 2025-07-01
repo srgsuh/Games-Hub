@@ -1,11 +1,9 @@
 import {Box, VStack, Text} from "@chakra-ui/react";
 import type {Genre} from "../../model/FetchGenreTypes.ts";
-import useFetchData from "../../hooks/useFetchData.ts";
+import useFetchGenres from "../../hooks/useFetchGenres.ts";
 
 const GenreList = () => {
-    const {data: genres, error} = useFetchData<Genre>("/genres", {
-        ordering: "name"
-    });
+    const {data: genres, error} = useFetchGenres();
 
     return (
         <>
