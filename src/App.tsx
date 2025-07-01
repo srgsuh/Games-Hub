@@ -11,7 +11,7 @@ function App() {
               <GridItem area="nav">
                   <Navigator></Navigator>
               </GridItem>
-              <GridItem hideBelow={"md"} bg={"green.300"} area={"side"}>
+              <GridItem hideBelow={"md"} area={"side"}>
                   <GenreList />
               </GridItem>
               <GridItem area={"main"}>

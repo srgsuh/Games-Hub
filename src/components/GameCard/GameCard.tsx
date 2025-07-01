@@ -8,13 +8,14 @@ interface GameCardProps {
     game: Game;
 }
 
-const GameCard = ({game}: GameCardProps) => {
-    const {
+const GameCard =
+    ({game: {
         name,
         background_image,
         metacritic,
         platforms,
-    } = game;
+    }}: GameCardProps) => {
+
     return (<Card.Root overflow={"hidden"} >
         <Card.Header>
             <Heading size={"lg"}>{name}</Heading>
