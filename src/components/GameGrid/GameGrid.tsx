@@ -1,5 +1,5 @@
 import api from "../../services/api-client.ts";
-import type {FetchGamesResponse, Game} from "../../model/FetchTypes.ts";
+import type {FetchGamesResponse, Game} from "../../model/FetchGameTypes.ts";
 import {useEffect, useState} from "react";
 import {SimpleGrid, Text} from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard.tsx";

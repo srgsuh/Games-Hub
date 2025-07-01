@@ -1,7 +1,7 @@
 import {Heading, HStack, Image, Text} from "@chakra-ui/react";
 import { Card } from "@chakra-ui/react"
 import {Divider} from "@chakra-ui/layout";
-import type {Game} from "../../model/FetchTypes.ts";
+import type {Game} from "../../model/FetchGameTypes.ts";
 import ScoreBadge from "../ScoreBadge/ScoreBadge.tsx";
 
 interface GameCardProps {

@@ -10,7 +10,7 @@ export interface Game {
     id: number;
     name: string;
     background_image: string;
-    metacritic: string;
+    metacritic: number;
     platforms: PlatformOuterData[];
 }
 
@@ -18,3 +18,4 @@ export interface FetchGamesResponse {
     count: number;
     results: Game[];
 }
+
