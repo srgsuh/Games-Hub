@@ -29,9 +29,7 @@ const GameGrid = () => {
             >
                 {games.map((g) => (
                     <GameCard key={g.id}
-                              name={g.name}
-                              background_image={g.background_image}
-                              height={"100%"}
+                              game={g}
                     />))}
             </SimpleGrid>
         </>
