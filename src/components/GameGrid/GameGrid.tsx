@@ -2,9 +2,12 @@ import {SimpleGrid, Spinner, Text} from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard.tsx";
 import useFetchGames from "../../hooks/useFetchGames.ts";
 
-const GameGrid = () => {
+interface GameGridProps {
+    selectedGenre: string | null;
+}
 
-    const {data: games, error, isLoading} = useFetchGames();
+const GameGrid = ({selectedGenre}: GameGridProps) => {
+    const {data: games, error, isLoading} = useFetchGames(selectedGenre);
 
     return (
         <>
@@ -16,7 +19,7 @@ const GameGrid = () => {
                                 maxHeight={"80vh"}
                                 overflow={"auto"}
                     >
-                        {games.map((g) => (
+                        {games?.map((g) => (
                             <GameCard key={g.id}
                                       game={g}
                             />))}

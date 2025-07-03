@@ -3,12 +3,18 @@ import type {Genre} from "../../model/FetchGenreTypes.ts";
 
 interface GenreCardProps {
     genre: Genre;
+    onSelect: (genre: string) => void;
 }
 
-const GenreCard = ({genre: {
-    name,
-    image_background,
-}}: GenreCardProps) => {
+const GenreCard = (
+    {
+        genre: {
+            name,
+            slug,
+            image_background,
+        },
+        onSelect,
+    }: GenreCardProps) => {
     return (
         <HStack overflow={"hidden"}
                 alignItems={"center"}
@@ -21,7 +27,7 @@ const GenreCard = ({genre: {
                 <Avatar.Fallback name={name} />
                 <Avatar.Image src={image_background} alt={name} />
             </Avatar.Root>
-            <Button variant={"plain"}>{name}</Button>
+            <Button onClick={()=>onSelect(slug)} variant={"plain"}>{name}</Button>
         </HStack>
     );
 };

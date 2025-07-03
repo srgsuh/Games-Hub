@@ -36,7 +36,7 @@ const GameCard =
                 <ScoreBadge score={metacritic}></ScoreBadge>
             </HStack>
             {!!platforms.length &&
-                <Text>{platforms.map(p=>p.platform.name).join(', ')}</Text>
+                <Text>{platforms?.map(p=>p.platform.name).join(', ')}</Text>
             }
         </Card.Footer>
     </Card.Root>);

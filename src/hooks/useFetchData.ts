@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
 import api from "../services/api-client.ts";
 
-import type {AxiosError} from "axios";
+import type {AxiosError, AxiosRequestConfig} from "axios";
 import type {FetchDataResponse, FetchedData} from "../model/FetchDataTypes.ts";
 
 export default function useFetchData<T>(
     endpoint: string,
-    params: Record<string, string>
+    params: AxiosRequestConfig,
+    deps?: any[]
 ): FetchedData<T> {
     const [data, setData] = useState<T[]>([]);
     const [error, setError] = useState<string>("");
@@ -14,7 +15,7 @@ export default function useFetchData<T>(
 
     useEffect(() => {
         setIsLoading(true);
-        api.get<FetchDataResponse<T>>(endpoint, {params: params})
+        api.get<FetchDataResponse<T>>(endpoint, params)
             .then((result) => {
                 setData(result.data.results);
             })
@@ -23,7 +24,7 @@ export default function useFetchData<T>(
                 setError(`Network error: ${e.message.toLowerCase()}. Please try again later.`);
             })
             .finally(() => setIsLoading(false));
-    }, []);
+    }, deps || []);
 
     return {data, error, isLoading};
 }

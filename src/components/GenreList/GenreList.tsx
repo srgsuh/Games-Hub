@@ -3,7 +3,12 @@ import type {Genre} from "../../model/FetchGenreTypes.ts";
 import useFetchGenres from "../../hooks/useFetchGenres.ts";
 import GenreCard from "../GenreCard/GenreCard.tsx";
 
-const GenreList = () => {
+interface GenreListProps {
+    onSelectGenre: (genre: string) => void;
+}
+
+const GenreList
+    = ({onSelectGenre}: GenreListProps) => {
     const {data: genres, error, isLoading} = useFetchGenres();
 
     return (
@@ -14,7 +19,7 @@ const GenreList = () => {
                         p={"4"}
                         overflow={"auto"}
                 >
-                    {genres.map((g: Genre) => <GenreCard key={g.id} genre={g} />)}
+                    {genres?.map((g: Genre) => <GenreCard key={g.id} genre={g} onSelect={onSelectGenre} />)}
                 </VStack>
             )
         }
