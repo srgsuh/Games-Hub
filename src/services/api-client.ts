@@ -6,5 +6,5 @@ export default axios.create({
     params: {
         key: apiKey,
     },
-    timeout: 2000,
+    timeout: 3500,
 });

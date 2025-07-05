@@ -7,7 +7,7 @@ import type {FetchDataResponse, FetchedData} from "../model/FetchDataTypes.ts";
 export default function useFetchData<T>(
     endpoint: string,
     params: AxiosRequestConfig,
-    deps?: any[]
+    deps?: ReadonlyArray<unknown>
 ): FetchedData<T> {
     const [data, setData] = useState<T[]>([]);
     const [error, setError] = useState<string>("");

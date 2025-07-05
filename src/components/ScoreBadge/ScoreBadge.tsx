@@ -14,7 +14,7 @@ function getBadgeParameters(score: number):{color:string, bg: string, emoji: Rea
 
 const ScoreBadge = ({score}: ScoreBadgeProps) => {
     const {emoji, ...colorParams} = getBadgeParameters(score || 0);
-    return (<Badge {...colorParams}>{emoji}{score || "-."}</Badge>);
+    return (<Badge {...colorParams}>{emoji}{score || "-"}</Badge>);
 };
 
 export default ScoreBadge;

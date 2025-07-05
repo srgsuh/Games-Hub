@@ -1,4 +1,4 @@
-import {Avatar, Button, HStack} from "@chakra-ui/react";
+import {Avatar, HStack, Text} from "@chakra-ui/react";
 import type {Genre} from "../../model/FetchGenreTypes.ts";
 import {useColorModeValue} from "../ui/color-mode.tsx";
 
@@ -22,23 +22,22 @@ const GenreCard = (
     const bgColorSelected = useColorModeValue("green.300","green");
     const color  = useColorModeValue("black","white");
     return (
-        <HStack overflow={"hidden"}
-                alignItems={"center"}
+        <HStack alignItems={"center"}
                 border={"1px solid black"}
                 borderRadius="md"
-                p={4}
-                width={"100%"}
+                p={1}
+                w={"100%"}
                 bg={isSelected ? bgColorSelected: bgColorNormal}
                 onClick={()=>onSelect(slug)}
                 cursor={"pointer"}
+                color={color}
+                fontWeight={isSelected ? "bold": "normal"}
         >
             <Avatar.Root size={"lg"} shape={"full"}>
                 <Avatar.Fallback name={name} />
                 <Avatar.Image src={image_background} alt={name} />
             </Avatar.Root>
-            <Button variant={"plain"}
-                    color={color}
-                    fontWeight={isSelected ? "bold": "normal"}>{name}</Button>
+            <Text>{name}</Text>
         </HStack>
     );
 };
