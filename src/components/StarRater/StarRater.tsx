@@ -4,7 +4,7 @@ import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import type{ReactElement, FC} from 'react';
 import {HStack, Text} from "@chakra-ui/react";
 
-type RatingPanelProps = {
+type StarRaterProps = {
     starsCount?: number,
     maxRating: number,
     rating: number,
@@ -33,7 +33,7 @@ function getStarsArray(rating: number, maxRating: number, starsCount: number): R
     }
 
 
-const StarRater: FC<RatingPanelProps> = ({rating, maxRating, starsCount = 5}) => {
+const StarRater: FC<StarRaterProps> = ({rating, maxRating, starsCount = 5}) => {
     return (
         <HStack>
             <Text hideBelow={"xl"}>{rating} of {maxRating}</Text>
