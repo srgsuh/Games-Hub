@@ -5,21 +5,25 @@ import GenreCard from "../GenreCard/GenreCard.tsx";
 
 interface GenreListProps {
     onSelectGenre: (genre: string) => void;
+    selectedGenre: string | null;
 }
 
 const GenreList
-    = ({onSelectGenre}: GenreListProps) => {
+    = ({onSelectGenre, selectedGenre}: GenreListProps) => {
     const {data: genres, error, isLoading} = useFetchGenres();
 
     return (
         <>
-            {isLoading && <Spinner size={"xl"} /> }
-            {error? <Text>{error}</Text>: (
-                <VStack maxHeight={"80vh"}
-                        p={"4"}
-                        overflow={"auto"}
-                >
-                    {genres?.map((g: Genre) => <GenreCard key={g.id} genre={g} onSelect={onSelectGenre} />)}
+            {isLoading ? <Spinner size={"xl"} />: 
+            error? <Text>{error}</Text>:
+            (
+                <VStack maxHeight={"80vh"} p={"4"} overflow={"auto"}>
+                    {genres?.map((g: Genre) => <GenreCard
+                        key={g.id}
+                        genre={g}
+                        onSelect={onSelectGenre}
+                        isSelected={g.slug === selectedGenre}
+                        />)}
                 </VStack>
             )
         }

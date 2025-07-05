@@ -14,7 +14,7 @@ const Main = () => {
                     <Navigator></Navigator>
                 </GridItem>
                 <GridItem hideBelow={"md"} area={"side"}>
-                    <GenreList onSelectGenre={setSelectedGenre} />
+                    <GenreList onSelectGenre={setSelectedGenre} selectedGenre={selectedGenre}/>
                 </GridItem>
                 <GridItem area={"main"}>
                     <GameGrid selectedGenre={selectedGenre}></GameGrid>

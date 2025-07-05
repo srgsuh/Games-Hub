@@ -22,11 +22,12 @@ const GameCard =
         </Card.Header>
         <Divider />
         <Card.Body>
-            <Image src={background_image}
-                   alt={name}
-                   height="100%"
-                   objectFit="cover"
-                   borderRadius="md"
+            <Image 
+                src={background_image}
+                alt={name}
+                height="100%"
+                objectFit="cover"
+                borderRadius="md"
             />
         </Card.Body>
         <Divider />
@@ -35,9 +36,11 @@ const GameCard =
                 <Heading size={"md"}>Metacritic: </Heading>
                 <ScoreBadge score={metacritic}></ScoreBadge>
             </HStack>
-            {!!platforms.length &&
-                <Text>{platforms?.map(p=>p.platform.name).join(', ')}</Text>
-            }
+            {platforms && (
+                <Text>
+                    {platforms.map(({platform}) => platform.name).join(', ')}
+                </Text>
+            )}
         </Card.Footer>
     </Card.Root>);
 };
