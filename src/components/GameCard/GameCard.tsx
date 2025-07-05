@@ -3,7 +3,7 @@ import { Card } from "@chakra-ui/react"
 import {Divider} from "@chakra-ui/layout";
 import type {Game} from "../../model/FetchGameTypes.ts";
 import ScoreBadge from "../ScoreBadge/ScoreBadge.tsx";
-import RatingPanel from "../RatingPanel/RatingPanel.tsx";
+import StarRater from "../StarRater/StarRater.tsx";
 
 interface GameCardProps {
     game: Game;
@@ -36,7 +36,7 @@ const GameCard =
         <Card.Footer flexDirection={"column"} alignItems={"flex-start"}>
             <HStack justifyContent={"space-between"} w={"100%"}>
                 <HStack hideBelow={"lg"} justifyContent={"flex-start"}>
-                    <RatingPanel rating = {rating}></RatingPanel>
+                    <StarRater rating = {rating} maxRating={5} starsCount={5}></StarRater>
                 </HStack>
                 <HStack justifyContent={"flex-end"}>
                     <ScoreBadge score={metacritic}></ScoreBadge>
