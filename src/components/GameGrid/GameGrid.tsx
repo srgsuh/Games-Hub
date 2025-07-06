@@ -4,10 +4,11 @@ import useFetchGames from "../../hooks/useFetchGames.ts";
 
 type GameGridProps = {
     selectedGenre: string | null;
+    platformId: string | null;
 };
 
-const GameGrid = ({selectedGenre}: GameGridProps) => {
-    const {data: games, error, isLoading} = useFetchGames(selectedGenre);
+const GameGrid = ({selectedGenre, platformId}: GameGridProps) => {
+    const {data: games, error, isLoading} = useFetchGames(selectedGenre, platformId);
 
     return (
         <>

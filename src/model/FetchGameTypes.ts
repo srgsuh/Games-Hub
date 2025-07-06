@@ -1,7 +1,8 @@
 export interface PlatformData {
-    id: number
+    id: string
     slug: string;
     name: string;
+    image_background: string;
 }
 export interface PlatformOuterData {
     platform: PlatformData;
