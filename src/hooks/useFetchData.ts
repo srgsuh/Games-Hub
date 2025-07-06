@@ -15,6 +15,7 @@ export default function useFetchData<T>(
 
     useEffect(() => {
         setIsLoading(true);
+        console.log("Fetching data:", endpoint, params);
         api.get<FetchDataResponse<T>>(endpoint, params)
             .then((result) => {
                 setData(result.data.results);

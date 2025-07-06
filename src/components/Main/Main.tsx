@@ -2,14 +2,14 @@ import {Grid, GridItem} from "@chakra-ui/react";
 import Navigator from "../Navigator/Navigator.tsx";
 import GameGrid from "../GameGrid/GameGrid.tsx";
 import GenreList from "../GenreList/GenreList.tsx";
-import {useState} from "react";
+import {useReducer} from "react";
 import PlatformSelector from "../PlatfromSelector/PlatformSelector.tsx";
-import type {PlatformData} from "../../model/FetchGameTypes.ts";
+import {initialState, reducer} from "../../services/reducer.ts";
+
 
 const Main = () => {
-    const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
-    const [selectedPlatform, setSelectedPlatform] = useState<PlatformData | null>(null);
-    const platformId = selectedPlatform?.id || null;
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const {selectedGenre, selectedPlatform: platformId} = state;
 
     return (
         <>
@@ -18,14 +18,14 @@ const Main = () => {
                     <Navigator></Navigator>
                 </GridItem>
                 <GridItem hideBelow={"md"} area={"side"}>
-                    <GenreList onSelectGenre={setSelectedGenre} selectedGenre={selectedGenre}/>
+                    <GenreList onSelectGenre={(genre) => dispatch({selectedGenre: genre})} selectedGenre={selectedGenre}/>
                 </GridItem>
                 <GridItem area={"main"}>
                     <PlatformSelector
-                        onSelectPlatform={(p) => setSelectedPlatform(p)}
-                        selectedPlatform={selectedPlatform}>
+                        onSelectPlatform={(p) => dispatch({selectedPlatform: p})}
+                        selectedPlatform={platformId}>
                     </PlatformSelector>
-                    <GameGrid selectedGenre={selectedGenre} platformId = {platformId}></GameGrid>
+                    <GameGrid state={state}></GameGrid>
                 </GridItem>
             </Grid>
         </>

@@ -18,9 +18,11 @@ const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedP
         <Stack direction={"row"} gap={"1"} alignItems={"center"} mb={"2"} ml={"2"}>
             {isLoading && <Spinner size={"md"}></Spinner>}
             {error? <Text color={"red"}>{error}</Text>: (
-                <Menu.Root open={isOpen} onOpenChange={(details) => setIsOpen(details.open)}>
+                <Menu.Root open={isOpen}
+                           onOpenChange={(details) => setIsOpen(details.open)}
+                >
                     <Menu.Trigger asChild>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" minW={185}>
                             {selectedPlatform?.name || "All"}
                             { isOpen? <FaChevronUp /> : <FaChevronDown />}
                         </Button>

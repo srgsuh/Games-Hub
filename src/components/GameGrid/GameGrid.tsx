@@ -1,21 +1,21 @@
 import {SimpleGrid, Spinner, Text} from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard.tsx";
 import useFetchGames from "../../hooks/useFetchGames.ts";
+import type {MainState} from "../../model/MainState.ts";
 
 type GameGridProps = {
-    selectedGenre: string | null;
-    platformId: string | null;
+    state: MainState;
 };
 
-const GameGrid = ({selectedGenre, platformId}: GameGridProps) => {
-    const {data: games, error, isLoading} = useFetchGames(selectedGenre, platformId);
+const GameGrid = ({state}: GameGridProps) => {
+    const {data: games, error, isLoading} = useFetchGames(state);
 
     return (
         <>
             {isLoading && <Spinner size={"xl"} /> }
             {!error && (
                 <>
-                    <SimpleGrid columns={{base: 1, sm: 2, md: 3,}}
+                    <SimpleGrid columns={{base: 1, sm: 2, lg: 3,}}
                                 gap="4"
                                 maxHeight={"80vh"}
                                 overflow={"auto"}
