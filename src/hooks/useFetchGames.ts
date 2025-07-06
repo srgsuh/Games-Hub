@@ -15,6 +15,5 @@ export default function useFetchGames(genre: string | null, platformId: string |
                 page_size: config.pageSize,
             }
     };
-    console.log(useFetchGames, requestParams);
     return useFetchData<Game>("/games", requestParams, [genre, platformId]);
 }

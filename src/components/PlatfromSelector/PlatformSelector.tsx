@@ -1,7 +1,8 @@
 import type {FC} from "react";
+import {useState} from "react";
 import {Button, Menu, Portal, Spinner, Stack, Text} from "@chakra-ui/react";
 import useFetchPlatforms from "../../hooks/useFetchPlatforms.ts";
-import { FaChevronDown } from "react-icons/fa";
+import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import type {PlatformData} from "../../model/FetchGameTypes.ts";
 
 type PlatformSelectorProps = {
@@ -11,16 +12,17 @@ type PlatformSelectorProps = {
 
 const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedPlatform}) => {
     const {data: platforms, isLoading, error} = useFetchPlatforms();
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <Stack direction={"row"} gap={"1"} alignItems={"center"} mb={"2"} ml={"2"}>
             {isLoading && <Spinner size={"md"}></Spinner>}
             {error? <Text color={"red"}>{error}</Text>: (
-                <>
-                <Menu.Root>
+                <Menu.Root open={isOpen} onOpenChange={(details) => setIsOpen(details.open)}>
                     <Menu.Trigger asChild>
                         <Button variant="outline" size="sm">
-                            Select Platform
-                            <FaChevronDown />
+                            {selectedPlatform?.name || "All"}
+                            { isOpen? <FaChevronUp /> : <FaChevronDown />}
                         </Button>
                     </Menu.Trigger>
                     <Portal>
@@ -38,8 +40,6 @@ const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedP
                         </Menu.Positioner>
                     </Portal>
                 </Menu.Root>
-                <Text>{`: ${selectedPlatform?.name || "All"}`}</Text>
-                </>
             )}
         </Stack>
     );
