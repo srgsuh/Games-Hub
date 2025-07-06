@@ -38,7 +38,7 @@ const GameCard =
                 <HStack hideBelow={"lg"} justifyContent={"flex-start"}>
                     <StarRater rating = {rating} maxRating={5} starsCount={5}></StarRater>
                 </HStack>
-                <HStack justifyContent={"flex-end"}>
+                <HStack justifyContent={"flex-end"} title={`Metacritic: ${metacritic}`}>
                     <ScoreBadge score={metacritic}></ScoreBadge>
                 </HStack>
             </HStack>
