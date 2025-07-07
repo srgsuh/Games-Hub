@@ -4,6 +4,7 @@ import {Button, Menu, Portal, Spinner, Text} from "@chakra-ui/react";
 import useFetchPlatforms from "../../hooks/useFetchPlatforms.ts";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import type {PlatformData} from "../../model/FetchGameTypes.ts";
+import MotionElement from "../MotionElement/MotionElement.tsx";
 
 type PlatformSelectorProps = {
     onSelectPlatform: (platform: PlatformData) => void;
@@ -13,7 +14,7 @@ type PlatformSelectorProps = {
 const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedPlatform}) => {
     const {data: platforms, isLoading, error} = useFetchPlatforms();
     const [isOpen, setIsOpen] = useState(false);
-
+    const duration = 0.36;
     return (
         <>
             {isLoading && <Spinner size={"md"}></Spinner>}
@@ -23,22 +24,25 @@ const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedP
                 >
                     <Menu.Trigger asChild>
                         <Button variant="outline" size="sm" minW={200}>
-                            {selectedPlatform?.name || "All"}
-                            { isOpen? <FaChevronUp /> : <FaChevronDown />}
+                            {selectedPlatform?.name || "All platforms"}
+                            { isOpen? <MotionElement duration={duration}><FaChevronUp /></MotionElement>
+                                : <FaChevronDown />}
                         </Button>
                     </Menu.Trigger>
                     <Portal>
                         <Menu.Positioner>
-                            <Menu.Content>
-                                {platforms?.map((p) => (
-                                    <Menu.Item
-                                        key={p.id}
-                                        value={p.slug}
-                                        onSelect={() => onSelectPlatform(p)}>
-                                        {p.name}
-                                    </Menu.Item>
-                                ))}
-                            </Menu.Content>
+                            <MotionElement duration={duration}>
+                                <Menu.Content>
+                                    {platforms?.map((p) => (
+                                        <Menu.Item
+                                            key={p.id}
+                                            value={p.slug}
+                                            onSelect={() => onSelectPlatform(p)}>
+                                            {p.name}
+                                        </Menu.Item>
+                                    ))}
+                                </Menu.Content>
+                            </MotionElement>
                         </Menu.Positioner>
                     </Portal>
                 </Menu.Root>
