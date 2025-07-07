@@ -1,5 +1,5 @@
 const config = {
     pageSize: "12",
-    sortOrderConfigPath: "/config/menu-config.json",
+    sortOrderConfigPath: "/config/sorting-config.json",
 };
 export default config;

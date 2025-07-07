@@ -11,7 +11,7 @@ import SortOrderSelector from "../SortOrderSelector/SortOrderSelector.tsx";
 const Main = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const {selectedGenre, selectedPlatform: platformId} = state;
-    console.log("MAIN STATE", state);
+
     return (
         <>
             <Grid templateAreas= {{md: '"nav nav" "side main"', base: '"nav" "main"'}}>

@@ -1,14 +1,13 @@
-import type {MainState} from "../model/MainState.ts";
+import type {GameQuery} from "../model/GameQuery.ts";
 
-const initialState: MainState = {
+const initialState: GameQuery = {
     selectedGenre: null,
     selectedPlatform: null,
     sortOrder: null,
 };
 
-const reducer = (state: MainState, action: Partial<MainState>) => {
-    const result = {...state, ...action};
-    return result;
+const reducer = (state: GameQuery, action: Partial<GameQuery>) => {
+    return {...state, ...action};
 };
 
 

@@ -1,8 +1,8 @@
 import type {AxiosRequestConfig} from "axios";
-import type {MainState} from "../model/MainState.ts";
+import type {GameQuery} from "../model/GameQuery.ts";
 import config from "../config/config.ts";
 
-export function stateToQueryParams(state: Partial<MainState>, paginate?: boolean): AxiosRequestConfig {
+export function stateToQueryParams(state: Partial<GameQuery>, paginate?: boolean): AxiosRequestConfig {
     const {selectedGenre, selectedPlatform, sortOrder} = state;
     const platformId = selectedPlatform?.id;
     const genreParams= selectedGenre? {genres: selectedGenre}: {};
@@ -20,7 +20,6 @@ export function stateToQueryParams(state: Partial<MainState>, paginate?: boolean
     }
 }
 
-export const deps = (state: MainState): ReadonlyArray<unknown> => {
-    const dependencies = [state.selectedGenre || null, state.selectedPlatform?.id || null];
-    return dependencies;
+export const deps = (state: GameQuery): ReadonlyArray<unknown> => {
+    return [state.selectedGenre || null, state.selectedPlatform?.id || null];
 }

@@ -1,10 +1,10 @@
 import {SimpleGrid, Spinner, Text} from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard.tsx";
 import useFetchGames from "../../hooks/useFetchGames.ts";
-import type {MainState} from "../../model/MainState.ts";
+import type {GameQuery} from "../../model/GameQuery.ts";
 
 type GameGridProps = {
-    state: MainState;
+    state: GameQuery;
 };
 
 const GameGrid = ({state}: GameGridProps) => {

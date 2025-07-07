@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Game name (A to Z)",
+    "value": "name"
+  },
+  {
+    "label": "Game name (Z to A)",
+    "value": "-name"
+  },
+  {
+    "label": "User ratings",
+    "value": "-rating"
+  },
+  {
+    "label": "Critics score",
+    "value": "-metacritic"
+  },
+  {
+    "label": "Release date",
+    "value": "-released"
+  }
+]
