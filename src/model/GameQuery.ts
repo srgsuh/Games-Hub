@@ -4,5 +4,6 @@ export type GameQuery = {
     selectedGenre: string | null;
     selectedPlatform: PlatformData | null;
     sortOrder: string | null;
+    searchQuery: string | null;
 };
 

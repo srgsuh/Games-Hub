@@ -9,6 +9,6 @@ export default function useFetchGames(state: GameQuery): FetchedData<Game> {
     return useFetchData<Game>(
         "/games",
         requestParams,
-        [state.selectedGenre, state.selectedPlatform, state.sortOrder]
+        [state.selectedGenre, state.selectedPlatform, state.sortOrder, state.searchQuery]
     );
 }

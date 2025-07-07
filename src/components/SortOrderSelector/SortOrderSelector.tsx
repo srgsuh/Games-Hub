@@ -3,6 +3,7 @@ import {Button, Menu, Portal} from "@chakra-ui/react";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import sortOptions from "../../../config/sorting-config.json";
 import MotionElement from "../MotionElement/MotionElement.tsx";
+import config from "../../config/config.ts";
 type SortMenuItem = (typeof sortOptions)[0]
 
 
@@ -13,7 +14,7 @@ interface PlatformSelectorProps {
 const SortOrderSelector = ({onOrderSelect}:PlatformSelectorProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState<SortMenuItem | null>(null);
-    const duration = 0.36;
+    const duration = config.menuOpenDuration;
 
     return (
         <Menu.Root open={isOpen}

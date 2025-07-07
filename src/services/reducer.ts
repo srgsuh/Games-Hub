@@ -4,6 +4,7 @@ const initialState: GameQuery = {
     selectedGenre: null,
     selectedPlatform: null,
     sortOrder: null,
+    searchQuery: null
 };
 
 const reducer = (state: GameQuery, action: Partial<GameQuery>) => {

@@ -9,17 +9,14 @@ export function stateToQueryParams(state: Partial<GameQuery>, paginate?: boolean
     const platformParams= platformId? {parent_platforms: platformId}: {};
     const pageParams = paginate? {page_size: config.pageSize}: {};
     const orderParams = sortOrder? {ordering: sortOrder}: {};
-
+    const searchParams = state.searchQuery? {search: state.searchQuery}: {};
     return {
             params: {
                 ...platformParams,
                 ...genreParams,
                 ...orderParams,
-                ...pageParams
+                ...pageParams,
+                ...searchParams
             }
     }
-}
-
-export const deps = (state: GameQuery): ReadonlyArray<unknown> => {
-    return [state.selectedGenre || null, state.selectedPlatform?.id || null];
 }

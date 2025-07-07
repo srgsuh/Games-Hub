@@ -16,12 +16,13 @@ const Main = () => {
         <>
             <Grid templateAreas= {{md: '"nav nav" "side main"', base: '"nav" "main"'}}>
                 <GridItem area="nav">
-                    <Navigator></Navigator>
+                    <Navigator onSearch={(query) => dispatch({searchQuery: query})}></Navigator>
                 </GridItem>
                 <GridItem hideBelow={"md"} area={"side"}>
                     <GenreList onSelectGenre={(genre) => dispatch({selectedGenre: genre})} selectedGenre={selectedGenre}/>
                 </GridItem>
                 <GridItem area={"main"}>
+
                     <HStack padding={"1"} justifyContent={"flex-start"} alignItems={"center"}>
                         <PlatformSelector
                             onSelectPlatform={(p) => dispatch({selectedPlatform: p})}

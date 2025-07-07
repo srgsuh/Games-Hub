@@ -5,6 +5,7 @@ import useFetchPlatforms from "../../hooks/useFetchPlatforms.ts";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import type {PlatformData} from "../../model/FetchGameTypes.ts";
 import MotionElement from "../MotionElement/MotionElement.tsx";
+import config from "../../config/config.ts";
 
 type PlatformSelectorProps = {
     onSelectPlatform: (platform: PlatformData) => void;
@@ -14,7 +15,7 @@ type PlatformSelectorProps = {
 const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedPlatform}) => {
     const {data: platforms, isLoading, error} = useFetchPlatforms();
     const [isOpen, setIsOpen] = useState(false);
-    const duration = 0.36;
+    const duration = config.menuOpenDuration;
     return (
         <>
             {isLoading && <Spinner size={"md"}></Spinner>}
