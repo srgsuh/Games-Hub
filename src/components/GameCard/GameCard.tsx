@@ -19,9 +19,15 @@ const GameCard =
         parent_platforms: platforms,
     }}: GameCardProps) => {
 
-    return (<Card.Root overflow={"hidden"} >
-        <Card.Header>
-            <Heading size={"lg"}>{name}</Heading>
+    return (
+        <Card.Root  overflow={"hidden"}
+                    maxW = {{
+                        base: "xs",
+                        sm: "sm",
+                    }}
+        >
+        <Card.Header overflow={"hidden"} textWrap={"nowrap"} textOverflow={"ellipsis"} title={name}>
+            <Heading size={"md"} >{name}</Heading>
         </Card.Header>
         <Divider />
         <Card.Body>
@@ -31,6 +37,10 @@ const GameCard =
                 height="100%"
                 objectFit="cover"
                 borderRadius="md"
+                maxW = {{
+                    base: "xs",
+                    sm: "sm",
+                }}
             />
         </Card.Body>
         <Divider />
