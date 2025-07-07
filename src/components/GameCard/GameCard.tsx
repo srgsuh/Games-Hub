@@ -4,6 +4,7 @@ import {Divider} from "@chakra-ui/layout";
 import type {Game} from "../../model/FetchGameTypes.ts";
 import ScoreBadge from "../ScoreBadge/ScoreBadge.tsx";
 import StarRater from "../StarRater/StarRater.tsx";
+import no_image from "../../assets/no_image.jpg";
 
 interface GameCardProps {
     game: Game;
@@ -25,8 +26,8 @@ const GameCard =
         <Divider />
         <Card.Body>
             <Image 
-                src={background_image}
-                alt={name}
+                src={background_image || no_image}
+                alt={`Image for the game ${name}`}
                 height="100%"
                 objectFit="cover"
                 borderRadius="md"
@@ -44,7 +45,7 @@ const GameCard =
             </HStack>
             {platforms && (
                 <Text>
-                    {platforms.map(({platform}) => platform.name).join(', ')}
+                    {platforms?.map(({platform}) => platform.name).join(', ')}
                 </Text>
             )}
         </Card.Footer>

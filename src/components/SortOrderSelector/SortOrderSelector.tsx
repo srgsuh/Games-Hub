@@ -27,9 +27,9 @@ const SortOrderSelector = ({onOrderSelect}:PlatformSelectorProps) => {
             <Portal>
                 <Menu.Positioner>
                     <Menu.Content>
-                        {sortOptions.map((menuItem: SortMenuItem, index: number) => (
+                        {sortOptions.map((menuItem: SortMenuItem) => (
                             <Menu.Item
-                                key={index}
+                                key={menuItem.value}
                                 value={menuItem.value}
                                 onSelect={() => {
                                     onOrderSelect(menuItem.value);
