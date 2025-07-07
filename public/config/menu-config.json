@@ -1,9 +1,5 @@
 [
   {
-    "label": "-- Select sort order --",
-    "value": "null"
-  },
-  {
     "label": "Game name A to Z",
     "value": "name"
   },
