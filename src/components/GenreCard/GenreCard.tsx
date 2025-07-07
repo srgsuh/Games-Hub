@@ -5,7 +5,7 @@ import {useColorModeValue} from "../ui/color-mode.tsx";
 interface GenreCardProps {
     genre: Genre;
     isSelected: boolean;
-    onSelect: (genre: string) => void;
+    onSelect: (genre: string | null) => void;
 }
 
 const GenreCard = (

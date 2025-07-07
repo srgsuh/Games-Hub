@@ -24,7 +24,7 @@ const Main = () => {
                     <GenreList onSelectGenre={(genre) => dispatch({selectedGenre: genre})} selectedGenre={selectedGenre}/>
                 </GridItem>
                 <GridItem area={"main"}>
-                    <HStack padding={"1"} justifyContent={"flex-start"} alignItems={"center"}>
+                    <HStack padding={"1"} justifyContent={"flex-start"} alignItems={"center"} wrap={"wrap"}>
                         <PlatformSelector
                             onSelectPlatform={(p) => dispatch({selectedPlatform: p})}
                             selectedPlatform={platformId}>
