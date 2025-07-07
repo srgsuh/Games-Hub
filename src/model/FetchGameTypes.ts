@@ -4,6 +4,14 @@ export interface PlatformData {
     name: string;
     image_background: string;
 }
+
+export const anyPlatform: PlatformData = {
+    id: "",
+    slug: "all-platforms",
+    name: "All platforms",
+    image_background: "../assets/all_platforms.svg",
+};
+
 export interface PlatformOuterData {
     platform: PlatformData;
 }

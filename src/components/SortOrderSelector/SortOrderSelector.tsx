@@ -36,10 +36,10 @@ const SortOrderSelector = ({onOrderSelect}:PlatformSelectorProps) => {
                         <Menu.Content>
                             {sortOptions.map((menuItem: SortMenuItem) => (
                                 <Menu.Item
-                                    key={menuItem.value}
-                                    value={menuItem.value}
+                                    key={menuItem.id}
+                                    value={menuItem.id}
                                     onSelect={() => {
-                                        onOrderSelect(menuItem.value);
+                                        onOrderSelect(menuItem.searchString);
                                         setSelectedOrder(menuItem);
                                     }}>
                                     {menuItem.label}

@@ -1,6 +1,13 @@
 export interface Genre {
-    id: number;
+    id: string;
     name: string;
-    slug: string;
+    slug: string | null;
     image_background: string;
 }
+
+export const anyGenre: Genre = {
+    id: "null",
+    name: "All genres",
+    slug: null,
+    image_background: ""
+};

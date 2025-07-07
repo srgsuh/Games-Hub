@@ -1,22 +1,32 @@
 [
   {
+    "label": "Relevance",
+    "searchString": null,
+    "id": "1"
+  },
+  {
     "label": "Game name (A to Z)",
-    "value": "name"
+    "searchString": "name",
+    "id": "2"
   },
   {
     "label": "Game name (Z to A)",
-    "value": "-name"
+    "searchString": "-name",
+    "id": "3"
   },
   {
     "label": "User ratings",
-    "value": "-rating"
+    "searchString": "-rating",
+    "id": "4"
   },
   {
     "label": "Critics score",
-    "value": "-metacritic"
+    "searchString": "-metacritic",
+    "id": "5"
   },
   {
     "label": "Release date",
-    "value": "-released"
+    "searchString": "-released",
+    "id": "6"
   }
 ]
