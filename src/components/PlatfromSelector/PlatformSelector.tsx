@@ -1,6 +1,6 @@
 import type {FC} from "react";
 import {useState} from "react";
-import {Button, Menu, Portal, Spinner, Stack, Text} from "@chakra-ui/react";
+import {Button, Menu, Portal, Spinner, Text} from "@chakra-ui/react";
 import useFetchPlatforms from "../../hooks/useFetchPlatforms.ts";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import type {PlatformData} from "../../model/FetchGameTypes.ts";
@@ -15,14 +15,14 @@ const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedP
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <Stack direction={"row"} gap={"1"} alignItems={"center"} mb={"2"} ml={"2"}>
+        <>
             {isLoading && <Spinner size={"md"}></Spinner>}
             {error? <Text color={"red"}>{error}</Text>: (
                 <Menu.Root open={isOpen}
                            onOpenChange={(details) => setIsOpen(details.open)}
                 >
                     <Menu.Trigger asChild>
-                        <Button variant="outline" size="sm" minW={185}>
+                        <Button variant="outline" size="sm" minW={200}>
                             {selectedPlatform?.name || "All"}
                             { isOpen? <FaChevronUp /> : <FaChevronDown />}
                         </Button>
@@ -43,7 +43,7 @@ const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedP
                     </Portal>
                 </Menu.Root>
             )}
-        </Stack>
+        </>
     );
 };
 

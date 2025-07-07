@@ -19,6 +19,7 @@ const GameGrid = ({state}: GameGridProps) => {
                                 gap="4"
                                 maxHeight={"80vh"}
                                 overflow={"auto"}
+                                padding={"1"}
                     >
                         {games?.map((g) => (
                             <GameCard key={g.id} game={g}/>))}
