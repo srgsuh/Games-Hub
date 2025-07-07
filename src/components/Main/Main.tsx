@@ -6,6 +6,8 @@ import {useReducer} from "react";
 import PlatformSelector from "../PlatfromSelector/PlatformSelector.tsx";
 import {initialState, reducer} from "../../services/reducer.ts";
 import SortOrderSelector from "../SortOrderSelector/SortOrderSelector.tsx";
+import {Box} from "@chakra-ui/react";
+import GenreMenu from "../GenreMenu/GenreMenu.tsx";
 
 
 const Main = () => {
@@ -22,7 +24,6 @@ const Main = () => {
                     <GenreList onSelectGenre={(genre) => dispatch({selectedGenre: genre})} selectedGenre={selectedGenre}/>
                 </GridItem>
                 <GridItem area={"main"}>
-
                     <HStack padding={"1"} justifyContent={"flex-start"} alignItems={"center"}>
                         <PlatformSelector
                             onSelectPlatform={(p) => dispatch({selectedPlatform: p})}
@@ -31,6 +32,12 @@ const Main = () => {
                         <SortOrderSelector
                             onOrderSelect={(order)=> dispatch({sortOrder: order})}>
                         </SortOrderSelector>
+                        <Box display={{base: "none", sm: "block", md: "none"}}>
+                            <GenreMenu selectedGenre={selectedGenre}
+                                onSelectGenre={(genre) => dispatch({selectedGenre: genre})}>
+
+                            </GenreMenu>
+                        </Box>
                     </HStack>
                     <GameGrid state={state}></GameGrid>
                 </GridItem>

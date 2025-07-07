@@ -9,5 +9,5 @@ export const anyGenre: Genre = {
     id: "null",
     name: "All genres",
     slug: null,
-    image_background: ""
+    image_background: "/img/any_genre.png",
 };
