@@ -1,14 +1,12 @@
 import {Input, InputGroup} from "@chakra-ui/react";
 import {LuSearch} from "react-icons/lu";
-import type { FC, FormEvent} from "react";
+import type { FormEvent} from "react";
 import {useRef} from "react";
 import {Box} from "@chakra-ui/layout";
+import {useGameStore} from "../../data-management/store.ts";
 
-interface SearchBarProps {
-    onSearch: (query: string) => void
-}
-
-const SearchBar: FC<SearchBarProps> = ({onSearch}) => {
+const SearchBar = () => {
+    const onSearch = useGameStore((state) => state.setSearchQuery);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = (e: FormEvent<HTMLInputElement>) => {

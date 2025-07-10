@@ -1,14 +1,11 @@
 import {SimpleGrid, Spinner, Text} from "@chakra-ui/react";
 import GameCard from "../GameCard/GameCard.tsx";
 import useFetchGames from "../../hooks/useFetchGames.ts";
-import type {GameQuery} from "../../model/GameQuery.ts";
+import {useGameStore} from "../../data-management/store.ts";
 
-type GameGridProps = {
-    state: GameQuery;
-};
-
-const GameGrid = ({state}: GameGridProps) => {
-    const {data: games, error, isLoading} = useFetchGames(state);
+const GameGrid = () => {
+    const gameQuery = useGameStore((gs) => gs.gameQuery);
+    const {data: games, error, isLoading} = useFetchGames(gameQuery);
 
     return (
         <>

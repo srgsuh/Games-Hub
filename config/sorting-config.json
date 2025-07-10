@@ -5,12 +5,12 @@
     "id": "1"
   },
   {
-    "label": "Game name (A to Z)",
+    "label": "Game title (A to Z)",
     "searchString": "name",
     "id": "2"
   },
   {
-    "label": "Game name (Z to A)",
+    "label": "Game title (Z to A)",
     "searchString": "-name",
     "id": "3"
   },

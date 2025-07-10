@@ -3,16 +3,13 @@ import type {Genre} from "../../model/FetchGenreTypes.ts";
 import useFetchGenres from "../../hooks/useFetchGenres.ts";
 import GenreCard from "../GenreCard/GenreCard.tsx";
 import {anyGenre} from "../../model/FetchGenreTypes.ts";
+import {useGameStore} from "../../data-management/store.ts";
 
-interface GenreListProps {
-    onSelectGenre: (genre: string | null) => void;
-    selectedGenre: string | null;
-}
-
-const GenreList
-    = ({onSelectGenre, selectedGenre}: GenreListProps) => {
+const GenreList = () => {
     const {data: genres, error, isLoading} = useFetchGenres();
     const genreList = genres?.length? [anyGenre, ...genres] : genres;
+    const selectedGenre = useGameStore((gs) => gs.gameQuery.selectedGenre);
+    const onSelectGenre = useGameStore((gs) => gs.setSelectedGenre);
 
     return (
         <>
@@ -24,7 +21,7 @@ const GenreList
                         key={g.id}
                         genre={g}
                         onSelect={onSelectGenre}
-                        isSelected={g.slug === selectedGenre}
+                        isSelected={g.slug === selectedGenre?.slug}
                         />)}
                 </VStack>
             )

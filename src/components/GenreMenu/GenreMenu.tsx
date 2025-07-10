@@ -1,4 +1,3 @@
-import type {FC} from "react";
 import {useState} from "react";
 import useFetchGenres from "../../hooks/useFetchGenres.ts";
 import {anyGenre} from "../../model/FetchGenreTypes.ts";
@@ -6,19 +5,17 @@ import {Button, Menu, Portal, Spinner, Text} from "@chakra-ui/react";
 import MotionElement from "../MotionElement/MotionElement.tsx";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import config from "../../config/config.ts";
+import {useGameStore} from "../../data-management/store.ts";
 
-
-interface Props {
-    onSelectGenre: (genre: string | null) => void;
-    selectedGenre: string | null;
-}
-
-const GenreMenu: FC<Props> = ({onSelectGenre, selectedGenre}) => {
+const GenreMenu = () => {
     const {data: genres, error, isLoading} = useFetchGenres();
     const [isOpen, setIsOpen] = useState(false);
 
     const duration = config.menuOpenDuration;
     const genreList = genres?.length? [anyGenre, ...genres] : genres;
+
+    const selectedGenre = useGameStore((gs) => gs.gameQuery.selectedGenre);
+    const onSelectGenre = useGameStore((gs) => gs.setSelectedGenre);
 
     return (
         <>
@@ -29,8 +26,8 @@ const GenreMenu: FC<Props> = ({onSelectGenre, selectedGenre}) => {
                 >
                     <Menu.Trigger asChild>
                         <Button variant="outline" size="sm" minW={200}>
-                            {selectedGenre || anyGenre.name}
-                            { isOpen? <MotionElement duration={duration}><FaChevronUp /></MotionElement>
+                            {selectedGenre?.name || anyGenre.name}
+                            { isOpen? <MotionElement ><FaChevronUp /></MotionElement>
                                 : <FaChevronDown />}
                         </Button>
                     </Menu.Trigger>
@@ -42,7 +39,7 @@ const GenreMenu: FC<Props> = ({onSelectGenre, selectedGenre}) => {
                                         <Menu.Item
                                             key={g.id}
                                             value={g.id}
-                                            onSelect={() => onSelectGenre(g.slug)}>
+                                            onSelect={() => onSelectGenre(g)}>
                                             {g.name}
                                         </Menu.Item>
                                     ))}

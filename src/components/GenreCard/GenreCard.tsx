@@ -5,22 +5,19 @@ import {useColorModeValue} from "../ui/color-mode.tsx";
 interface GenreCardProps {
     genre: Genre;
     isSelected: boolean;
-    onSelect: (genre: string | null) => void;
+    onSelect: (genre: Genre | null) => void;
 }
 
 const GenreCard = (
     {
-        genre: {
-            name,
-            slug,
-            image_background,
-        },
+        genre,
         isSelected,
         onSelect,
     }: GenreCardProps) => {
     const bgColorNormal = useColorModeValue("white","black");
     const bgColorSelected = useColorModeValue("green.300","green");
     const color  = useColorModeValue("black","white");
+    const {name, image_background} = genre;
     return (
         <HStack alignItems={"center"}
                 border={"1px solid black"}
@@ -28,7 +25,7 @@ const GenreCard = (
                 p={1}
                 w={"100%"}
                 bg={isSelected ? bgColorSelected: bgColorNormal}
-                onClick={()=>onSelect(slug)}
+                onClick={()=>onSelect(genre)}
                 cursor={"pointer"}
                 color={color}
                 fontWeight={isSelected ? "bold": "normal"}

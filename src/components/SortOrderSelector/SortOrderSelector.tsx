@@ -3,18 +3,13 @@ import {Button, Menu, Portal} from "@chakra-ui/react";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
 import sortOptions from "../../../config/sorting-config.json";
 import MotionElement from "../MotionElement/MotionElement.tsx";
-import config from "../../config/config.ts";
-type SortMenuItem = (typeof sortOptions)[0]
+import {useGameStore} from "../../data-management/store.ts";
+export type SortOption = (typeof sortOptions)[0]
 
-
-interface PlatformSelectorProps {
-    onOrderSelect: (selectedOrder: string | null) => void;
-}
-
-const SortOrderSelector = ({onOrderSelect}:PlatformSelectorProps) => {
+const SortOrderSelector = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOrder, setSelectedOrder] = useState<SortMenuItem | null>(null);
-    const duration = config.menuOpenDuration;
+    const selectedOrder = useGameStore((state) => state.gameQuery.sortOrder);
+    const setSortOrder = useGameStore((state) => state.setSortOrder);
 
     return (
         <Menu.Root open={isOpen}
@@ -23,26 +18,25 @@ const SortOrderSelector = ({onOrderSelect}:PlatformSelectorProps) => {
             <Menu.Trigger asChild>
                 <Button variant="outline" size="sm" minW={200}>
                     {`Order by ${selectedOrder?.label || "Relevance"}`}
-                    { isOpen? <MotionElement duration={duration}>
+                    { isOpen? <MotionElement>
                                 <FaChevronUp />
-                        </MotionElement>:
-                        <FaChevronDown />
+                            </MotionElement>:
+                            <FaChevronDown />
                     }
                 </Button>
             </Menu.Trigger>
             <Portal>
                 <Menu.Positioner>
-                    <MotionElement duration={duration}>
+                    <MotionElement>
                         <Menu.Content>
-                            {sortOptions.map((menuItem: SortMenuItem) => (
+                            {sortOptions.map((sortOption: SortOption) => (
                                 <Menu.Item
-                                    key={menuItem.id}
-                                    value={menuItem.id}
+                                    key={sortOption.id}
+                                    value={sortOption.id}
                                     onSelect={() => {
-                                        onOrderSelect(menuItem.searchString);
-                                        setSelectedOrder(menuItem);
+                                        setSortOrder(sortOption);
                                     }}>
-                                    {menuItem.label}
+                                    {sortOption.label}
                                 </Menu.Item>
                             ))}
                         </Menu.Content>

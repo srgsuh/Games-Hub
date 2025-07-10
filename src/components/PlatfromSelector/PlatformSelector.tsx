@@ -1,22 +1,16 @@
-import type {FC} from "react";
 import {useState} from "react";
 import {Button, Menu, Portal, Spinner, Text} from "@chakra-ui/react";
 import useFetchPlatforms from "../../hooks/useFetchPlatforms.ts";
 import {FaChevronDown, FaChevronUp} from "react-icons/fa";
-import type {PlatformData} from "../../model/FetchGameTypes.ts";
 import {anyPlatform} from "../../model/FetchGameTypes.ts";
 import MotionElement from "../MotionElement/MotionElement.tsx";
-import config from "../../config/config.ts";
+import {useGameStore} from "../../data-management/store.ts";
 
-type PlatformSelectorProps = {
-    onSelectPlatform: (platform: PlatformData | null) => void;
-    selectedPlatform: PlatformData | null;
-};
-
-const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedPlatform}) => {
+const PlatformSelector = () => {
     const {data: platforms, isLoading, error} = useFetchPlatforms();
     const [isOpen, setIsOpen] = useState(false);
-    const duration = config.menuOpenDuration;
+    const selectedPlatform = useGameStore((gs) => gs.gameQuery.selectedPlatform);
+    const onSelectPlatform = useGameStore((gs) => gs.setSelectedPlatform);
 
     const platformList = platforms?.length? [anyPlatform, ...platforms] : platforms;
     return (
@@ -29,13 +23,13 @@ const PlatformSelector:FC<PlatformSelectorProps> = ({onSelectPlatform, selectedP
                     <Menu.Trigger asChild>
                         <Button variant="outline" size="sm" minW={200}>
                             {selectedPlatform?.name || anyPlatform.name}
-                            { isOpen? <MotionElement duration={duration}><FaChevronUp /></MotionElement>
+                            { isOpen? <MotionElement><FaChevronUp /></MotionElement>
                                 : <FaChevronDown />}
                         </Button>
                     </Menu.Trigger>
                     <Portal>
                         <Menu.Positioner>
-                            <MotionElement duration={duration}>
+                            <MotionElement>
                                 <Menu.Content>
                                     {platformList?.map((p) => (
                                         <Menu.Item
