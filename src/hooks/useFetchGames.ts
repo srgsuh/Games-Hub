@@ -4,14 +4,15 @@ import type {FetchedData} from "../model/FetchDataTypes.ts";
 import type {GameQuery} from "../model/GameQuery.ts";
 import type {AxiosRequestConfig} from "axios";
 import config from "../config/config.ts";
+import {useGameStore} from "../data-management/store.ts";
 
-export default function useFetchGames(state: GameQuery): FetchedData<Game> {
-    console.log("useFetchGames ", state);
-    const requestParams = stateToQueryParams(state);
+export default function useFetchGames(): FetchedData<Game> {
+    const gQuery = useGameStore((gs) => gs.gameQuery);
+    const requestParams = stateToQueryParams(gQuery);
     return useFetchData<Game>(
         "/games",
         requestParams,
-        [state.selectedGenre, state.selectedPlatform, state.sortOrder, state.searchQuery]
+        [gQuery.selectedGenre, gQuery.selectedPlatform, gQuery.sortOrder, gQuery.searchQuery]
     );
 }
 
