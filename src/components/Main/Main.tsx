@@ -11,7 +11,14 @@ import GenreMenu from "../GenreMenu/GenreMenu.tsx";
 const Main = () => {
     return (
         <>
-            <Grid templateAreas= {{md: '"nav nav" "side main"', base: '"nav" "main"'}}>
+            <Grid templateAreas= {{md: '"nav nav" "side main"', base: '"nav" "main"'}}
+            templateColumns={{base: "1fr", md: "2fr 5fr", lg: "2fr 7fr", xl: "1fr 4fr"}}
+            gap={{base: "0", md: "4"}}
+            height={"100vh"}
+            width={"100vw"}
+            padding={"0"}
+            margin={"0"}
+            style={{overflow: "hidden"}}>
                 <GridItem area="nav">
                     <Navigator />
                 </GridItem>
