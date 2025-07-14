@@ -1,31 +1,21 @@
-import {useEffect, useState} from "react";
-import api from "../services/api-client.ts";
-
-import type {AxiosError, AxiosRequestConfig} from "axios";
-import type {FetchDataResponse, FetchedData} from "../model/FetchDataTypes.ts";
+import {useQuery, type UseQueryResult} from "@tanstack/react-query";
+import apiClient from "../services/api-client.ts";
+import type {FetchDataResponse} from "../model/FetchDataTypes.ts";
+import type {AxiosRequestConfig} from "axios";
 
 export default function useFetchData<T>(
     endpoint: string,
-    params: AxiosRequestConfig,
-    deps?: ReadonlyArray<unknown>
-): FetchedData<T> {
-    const [data, setData] = useState<T[]>([]);
-    const [error, setError] = useState<string>("");
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    useEffect(() => {
-        setIsLoading(true);
-        api.get<FetchDataResponse<T>>(endpoint, params)
-            .then((result) => {
-                setData(result.data.results);
-            })
-            .catch((e: AxiosError)=>{
-                console.error("Error while fetching data:", e);
-                setError(`Network error: ${e.message.toLowerCase()}. Please try again later.`);
-            })
-            .finally(() => setIsLoading(false));
-    }, deps || []);
-
-    return {data, error, isLoading};
+    requestParams: AxiosRequestConfig,
+    staleTime: number | "static" = "static"
+): UseQueryResult<T[], Error> {
+    const queryFn: () => Promise<T[]> =
+        () => apiClient
+        .get<FetchDataResponse<T>>(endpoint, requestParams)
+        .then(res => res.data.results);
+    return useQuery<T[], Error>({
+        queryKey: [endpoint, JSON.stringify(requestParams)],
+        queryFn,
+        staleTime
+    });
 }
 
