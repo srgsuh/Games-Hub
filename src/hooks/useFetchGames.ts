@@ -1,19 +1,23 @@
 import type {Game} from "../model/FetchGameTypes.ts";
-import useFetchData from "./useFetchData.ts";
-import type {FetchedData} from "../model/FetchDataTypes.ts";
 import type {GameQuery} from "../model/GameQuery.ts";
 import type {AxiosRequestConfig} from "axios";
 import config from "../config/config.ts";
 import {useGameStore} from "../data-management/store.ts";
+import {useQuery} from "@tanstack/react-query";
+import apiClient from "../services/api-client.ts";
+import type {FetchDataResponse} from "../model/FetchDataTypes.ts";
 
-export default function useFetchGames(): FetchedData<Game> {
+export default function useFetchGames() {
     const gQuery = useGameStore((gs) => gs.gameQuery);
     const requestParams = stateToQueryParams(gQuery);
-    return useFetchData<Game>(
-        "/games",
-        requestParams,
-        [gQuery.selectedGenre, gQuery.selectedPlatform, gQuery.sortOrder, gQuery.searchQuery]
-    );
+
+    return useQuery<Game[], Error>({
+        queryKey: ['games', JSON.stringify(requestParams)],
+        queryFn: ()=>apiClient
+            .get<FetchDataResponse<Game>>("/games", requestParams)
+            .then(res => res.data.results),
+        staleTime: 1000*600,
+    })
 }
 
 function stateToQueryParams(gameQuery: GameQuery): AxiosRequestConfig {

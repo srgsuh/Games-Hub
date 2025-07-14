@@ -16,7 +16,7 @@ const PlatformSelector = () => {
     return (
         <>
             {isLoading && <Spinner size={"md"}></Spinner>}
-            {error? <Text color={"red"}>{error}</Text>: (
+            {error? <Text color={"red"}>{error.message}</Text>: (
                 <Menu.Root open={isOpen}
                            onOpenChange={(details) => setIsOpen(details.open)}
                 >

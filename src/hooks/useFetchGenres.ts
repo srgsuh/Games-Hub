@@ -1,7 +1,14 @@
 import type {Genre} from "../model/FetchGenreTypes.ts";
-import useFetchData from "./useFetchData.ts";
-import type {FetchedData} from "../model/FetchDataTypes.ts";
+import type {FetchDataResponse} from "../model/FetchDataTypes.ts";
+import {useQuery} from "@tanstack/react-query";
+import apiClient from "../services/api-client.ts";
 
-export default function useFetchGenres(): FetchedData<Genre> {
-    return useFetchData<Genre>("/genres", {params: {ordering: "name"}});
+export default function useFetchGenres() {
+    const params = {params: {ordering: "name"}};
+    return useQuery<Genre[], Error>({
+        queryKey: ['genre'],
+        queryFn: () => apiClient.get<FetchDataResponse<Genre>>("/genres", params)
+            .then(res => res.data.results),
+        staleTime: "static",
+    });
 }

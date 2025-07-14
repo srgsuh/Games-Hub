@@ -14,7 +14,7 @@ const GenreList = () => {
     return (
         <>
             {isLoading ? <Spinner size={"xl"} />: 
-            error? <Text>{error}</Text>:
+            error? <Text>{error.message}</Text>:
             (
                 <VStack maxHeight={"80vh"} p={"4"} overflow={"auto"}>
                     {genreList?.map((g: Genre) => <GenreCard

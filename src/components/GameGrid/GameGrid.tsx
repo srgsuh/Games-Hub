@@ -19,7 +19,7 @@ const GameGrid = () => {
                         <GameCard key={g.id} game={g}/>))}
                 </SimpleGrid>
             )}
-            {!!error && (<Text color={"red"}>{error}</Text>)}
+            {!!error && (<Text color={"red"}>{error.message}</Text>)}
         </>
     );
 };
