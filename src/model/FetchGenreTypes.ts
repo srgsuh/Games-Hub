@@ -1,4 +1,6 @@
-export interface Genre {
+import type {SelectorItem} from "./SelectorItem";
+
+export interface Genre extends SelectorItem {
     id: string;
     name: string;
     slug: string | null;

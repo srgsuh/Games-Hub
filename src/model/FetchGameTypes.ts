@@ -1,6 +1,8 @@
-export interface PlatformData {
+import type {SelectorItem} from "./SelectorItem";
+
+export interface PlatformData extends SelectorItem {
     id: string
-    slug: string;
+    slug: string | null;
     name: string;
     image_background: string;
 }
