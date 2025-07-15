@@ -1,4 +1,4 @@
-import {anyGenre} from "../../model/FetchGenreTypes.ts";
+import {defaultGenre} from "../../model/FetchGenreTypes.ts";
 import {useGameStore} from "../../data-management/store.ts";
 import GenericOptionSelector from "../GenericOptionSelector/GenericOptionSelector.tsx";
 import GenericMenu from "../GenericMenu/GenericMenu.tsx";
@@ -12,7 +12,7 @@ const GenreMenu = () => {
         selectedItem: selectedGenre,
         onSelect: onSelectGenre,
         RenderingComponent: GenericMenu<Genre>,
-        defaultItem: anyGenre
+        defaultItem: defaultGenre
     });
 };
 

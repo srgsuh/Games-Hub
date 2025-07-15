@@ -1,5 +1,5 @@
 export interface SelectorItem {
-    id: string;
+    id: string | null;
     name: string;
     slug: string | null;
     image_background: string;

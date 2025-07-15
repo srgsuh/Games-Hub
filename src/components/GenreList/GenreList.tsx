@@ -2,12 +2,12 @@ import { VStack, Text, Spinner} from "@chakra-ui/react";
 import type {Genre} from "../../model/FetchGenreTypes.ts";
 import useFetchGenres from "../../hooks/useFetchGenres.ts";
 import GenreCard from "../GenreCard/GenreCard.tsx";
-import {anyGenre} from "../../model/FetchGenreTypes.ts";
+import {defaultGenre} from "../../model/FetchGenreTypes.ts";
 import {useGameStore} from "../../data-management/store.ts";
 
 const GenreList = () => {
     const {data: genres, error, isLoading} = useFetchGenres();
-    const genreList = genres?.length? [anyGenre, ...genres] : genres;
+    const genreList = genres?.length? [defaultGenre, ...genres] : genres;
     const selectedGenre = useGameStore((gs) => gs.gameQuery.selectedGenre);
     const onSelectGenre = useGameStore((gs) => gs.setSelectedGenre);
 
@@ -18,10 +18,10 @@ const GenreList = () => {
             (
                 <VStack maxHeight={"80vh"} p={"4"} overflow={"auto"}>
                     {genreList?.map((g: Genre) => <GenreCard
-                        key={g.id}
+                        key={g.slug}
                         genre={g}
                         onSelect={onSelectGenre}
-                        isSelected={g.slug === selectedGenre?.slug}
+                        isSelected={g.id === (selectedGenre?.id || null)}
                         />)}
                 </VStack>
             )

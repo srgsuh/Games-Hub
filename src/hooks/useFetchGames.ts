@@ -18,11 +18,11 @@ export default function useFetchGames() {
 
 function stateToQueryParams(gameQuery: GameQuery): AxiosRequestConfig {
     const platformId = gameQuery.selectedPlatform?.id;
-    const genreSlug = gameQuery.selectedGenre?.slug;
+    const genreId = gameQuery.selectedGenre?.id;
     const searchString = gameQuery.sortOrder?.searchString;
     const searchQuery = gameQuery.searchQuery;
 
-    const genreParams= genreSlug? {genres: genreSlug}: {};
+    const genreParams= genreId? {genres: genreId}: {};
     const platformParams= platformId? {parent_platforms: platformId}: {};
     const orderParams = searchString? {ordering: searchString}: {};
     const searchParams = searchQuery? {search: searchQuery}: {};

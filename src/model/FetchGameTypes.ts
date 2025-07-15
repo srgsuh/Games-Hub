@@ -1,15 +1,15 @@
 import type {SelectorItem} from "./SelectorItem";
 
 export interface PlatformData extends SelectorItem {
-    id: string
+    id: string | null
     slug: string | null;
     name: string;
     image_background: string;
 }
 
-export const anyPlatform: PlatformData = {
-    id: "",
-    slug: "all-platforms",
+export const defaultPlatform: PlatformData = {
+    id: null,
+    slug: "defaultPlatform-all-platforms",
     name: "All platforms",
     image_background: "../assets/all_platforms.svg",
 };
