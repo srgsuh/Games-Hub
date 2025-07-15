@@ -9,7 +9,7 @@ const GameGrid = () => {
         <>
             {isLoading && <Spinner size={"xl"} /> }
             {!error && (
-                <SimpleGrid columns={{base: 1, sm: 2, lg: 3,}}
+                <SimpleGrid columns={{base: 1, sm: 2, lg: 3, "2xl": 5}}
                             gap="4"
                             maxHeight={"80vh"}
                             overflow={"auto"}
