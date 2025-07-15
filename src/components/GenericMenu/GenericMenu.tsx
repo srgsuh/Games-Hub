@@ -16,10 +16,7 @@ const GenericMenu = <T extends SelectorItem>({
 
     const duration = config.menuOpenDuration;
     const itemList = items?.length? [defaultItem, ...items] : items;
-    if (items) {
-        console.log("ITEMS")
-        items.forEach(console.log)
-    }
+
     return (
         <Menu.Root open={isOpen}
                    onOpenChange={(details) => setIsOpen(details.open)}
