@@ -34,10 +34,10 @@ const GenericMenu = <T extends SelectorItem>({
                         <Menu.Content>
                             {itemList?.map((item) => (
                                 <Menu.Item
-                                    key={item?.slug}
-                                    value={`${item?.slug}`}
+                                    key={item.slug}
+                                    value={`${item.slug}`}
                                     onSelect={() => onSelect(item)}>
-                                    {item?.name}
+                                    {item.name}
                                 </Menu.Item>
                             ))}
                         </Menu.Content>

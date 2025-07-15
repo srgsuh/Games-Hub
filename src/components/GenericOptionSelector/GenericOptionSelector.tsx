@@ -1,7 +1,6 @@
-import type {SelectorItem} from "../../model/SelectorItem.ts";
-import type {SelectorItemProps} from "../../model/SelectorItem.ts";
+import type {SelectorItem, SelectorItemProps} from "../../model/SelectorItem.ts";
 import useFetchSelector from "../../hooks/useFetchSelector.ts";
-import {FC} from "react";
+import type {FC} from "react";
 import {Spinner, Text} from "@chakra-ui/react";
 
 interface Props<T extends SelectorItem> {
@@ -9,7 +8,7 @@ interface Props<T extends SelectorItem> {
     selectedItem: T | null;
     onSelect: (item: T | null) => void;
     RenderingComponent: FC<SelectorItemProps<T>>;
-    defaultItem?: T;
+    defaultItem: T;
 }
 
 const GenericOptionSelector = <T extends SelectorItem>({
@@ -19,7 +18,7 @@ const GenericOptionSelector = <T extends SelectorItem>({
     RenderingComponent,
     defaultItem,
 }: Props<T>) => {
-    const {data: items, error, isLoading} = useFetchSelector<T>(category);
+    const {data: items = null, error, isLoading} = useFetchSelector<T>(category);
     if (isLoading) {
         return <Spinner size={"xl"} />;
     }

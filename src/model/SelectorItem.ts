@@ -6,8 +6,8 @@ export interface SelectorItem {
 }
 
 export interface SelectorItemProps<T extends SelectorItem> {
-    items: T[];
+    items: T[] | null;
     selectedItem: T | null;
     onSelect: (item: T | null) => void;
-    defaultItem?: T;
+    defaultItem: T;
 }
