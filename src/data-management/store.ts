@@ -2,7 +2,7 @@ import {create} from "zustand";
 import type {PlatformData} from "../model/FetchGameTypes.ts";
 import type {Genre} from "../model/FetchGenreTypes.ts";
 import {type GameQuery, initialQuery} from "../model/GameQuery.ts";
-import type {SortOption} from "../components/SortOrderSelector/SortOrderSelector.tsx";
+import type {SelectorItem} from "../model/SelectorItem.ts";
 
 interface GameStore {
     // State
@@ -10,7 +10,7 @@ interface GameStore {
     // Actions
     setSelectedPlatform: (platform: PlatformData | null) => void;
     setSelectedGenre: (genre: Genre | null) => void;
-    setSortOrder: (sortOrder: SortOption | null) => void;
+    setSortOrder: (sortOrder: SelectorItem | null) => void;
     setSearchQuery: (query: string | null) => void;
 }
 export const useGameStore = create<GameStore>(
@@ -20,7 +20,7 @@ export const useGameStore = create<GameStore>(
             ({...state, gameQuery: {...state.gameQuery, selectedPlatform: platform}})),
         setSelectedGenre: (genre: Genre | null) => upd((state)=>
                 ({...state, gameQuery: {...state.gameQuery, selectedGenre: genre}})),
-        setSortOrder: (sortOrder: SortOption | null) => upd((state) =>
+        setSortOrder: (sortOrder: SelectorItem | null) => upd((state) =>
             ({...state, gameQuery: {...state.gameQuery, sortOrder: sortOrder}})),
         setSearchQuery: (query: string | null) => upd((state) =>
             ({...state, gameQuery: {...state.gameQuery, searchQuery: query}})),

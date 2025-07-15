@@ -1,11 +1,11 @@
 import type {PlatformData} from "./FetchGameTypes.ts";
-import type {SortOption} from "../components/SortOrderSelector/SortOrderSelector.tsx";
 import type {Genre} from "./FetchGenreTypes.ts";
+import type {SelectorItem} from "./SelectorItem.ts";
 
 export type GameQuery = {
     selectedGenre: Genre | null;
     selectedPlatform: PlatformData | null;
-    sortOrder: SortOption | null;
+    sortOrder: SelectorItem | null;
     searchQuery: string | null;
 };
 
