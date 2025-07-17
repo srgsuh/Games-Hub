@@ -1,6 +1,6 @@
 import type {SelectorItem, SelectorItemProps} from "../../model/SelectorItem.ts";
 import useFetchSelector from "../../hooks/useFetchSelector.ts";
-import type {FC} from "react";
+import type {FC, JSX} from "react";
 import {Spinner, Text} from "@chakra-ui/react";
 
 interface Props<T extends SelectorItem> {
@@ -9,6 +9,7 @@ interface Props<T extends SelectorItem> {
     onSelect: (item: T | null) => void;
     RenderingComponent: FC<SelectorItemProps<T>>;
     defaultItem: T;
+    selectorBuilder?: (t: T, selected: T | null, onSelect: (t: T | null)=>void) => JSX.Element;
 }
 
 const GenericOptionSelector = <T extends SelectorItem>({
@@ -17,6 +18,7 @@ const GenericOptionSelector = <T extends SelectorItem>({
     onSelect,
     RenderingComponent,
     defaultItem,
+    selectorBuilder,
 }: Props<T>) => {
     const {data: items = null, error, isLoading} = useFetchSelector<T>(category);
     if (isLoading) {
@@ -33,7 +35,8 @@ const GenericOptionSelector = <T extends SelectorItem>({
         <RenderingComponent items = {items}
                             onSelect={onSelect}
                             selectedItem={selectedItem}
-                            defaultItem={defaultItem}>
+                            defaultItem={defaultItem}
+                            selectorBuilder={selectorBuilder}>
         </RenderingComponent>
     );
 };

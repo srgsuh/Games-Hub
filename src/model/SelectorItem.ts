@@ -1,3 +1,5 @@
+import {type JSX} from "react";
+
 export interface SelectorItem {
     id: string | null;
     name: string;
@@ -10,4 +12,5 @@ export interface SelectorItemProps<T extends SelectorItem> {
     selectedItem: T | null;
     onSelect: (item: T | null) => void;
     defaultItem: T;
+    selectorBuilder?: (t: T, selected: T | null, onSelect: (t: T | null)=>void) => JSX.Element;
 }
